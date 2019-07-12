@@ -1,0 +1,337 @@
+<html>
+<title></title>
+<head>
+<script src="js/jquery-3.4.0.min.js"></script>
+<link rel="stylesheet" href="css/bootstrap.min.css" >
+<script src="js/bootstrap.min.js"></script>
+
+<script language="javascript">
+vartot=0;
+
+$(window).on('load',function(){
+$('#modalLoginForm').modal('show');
+console.log("page load");
+});
+
+function fHandler(varf){
+
+console.log ("F --> "+window.varf);
+window.varf -= 1;
+vartot += 1;
+if (window.varf < 1)
+{
+//alert ('not allow');
+document.getElementById("fbtn").disabled=true;
+document.getElementById("fbtn").style.color="#000000";
+document.getElementById("fbtn").style.backgroundColor="#000000";
+}
+//getEnd();
+//$('#myModal').modal();
+modalPopUp(window.interval);
+}
+
+function lHandler(){
+console.log ("L --> "+window.varl);
+window.varl -= 1;
+vartot += 1;
+if (window.varl < 1)
+{
+//alert ('not allow');
+document.getElementById("lbtn").disabled=true;
+document.getElementById("lbtn").style.color="#000000";
+document.getElementById("lbtn").style.backgroundColor="#000000";
+}
+//getEnd();
+modalPopUp(window.interval);
+}
+
+function gHandler(){
+console.log ("G --> "+window.varg);
+window.varg -= 1;
+vartot += 1;
+if (window.varg < 1)
+{
+//alert ('not allow');
+document.getElementById("gbtn").disabled=true;
+document.getElementById("gbtn").style.color="#000000";
+document.getElementById("gbtn").style.backgroundColor="#000000";
+}
+//getEnd();
+modalPopUp(window.interval);
+}
+
+function sHandler(){
+console.log ("S --> "+window.vars);
+window.vars -= 1;
+vartot += 1;
+if (window.vars < 1)
+{
+//alert ('not allow');
+document.getElementById("sbtn").disabled=true;
+document.getElementById("sbtn").style.color="#000000";
+document.getElementById("sbtn").style.backgroundColor="#000000";
+}
+//getEnd();
+modalPopUp(window.interval);
+}
+
+function jHandler(){
+console.log ("J --> "+window.varj);
+window.varj -= 1;
+vartot += 1;
+
+if (window.varj < 1)
+{
+//alert ('not allow');
+document.getElementById("jbtn").disabled=true;
+document.getElementById("jbtn").style.color="#000000";
+document.getElementById("jbtn").style.backgroundColor="#000000";
+}
+//getEnd()
+modalPopUp(window.interval);
+}
+
+function grHandler(){
+console.log ("GR --> "+window.vargr);
+window.vargr -= 1;
+vartot += 1;
+if (window.vargr < 1)
+{
+//alert ('not allow');
+document.getElementById("grbtn").disabled=true;
+document.getElementById("grbtn").style.color="#000000";
+document.getElementById("grbtn").style.backgroundColor="#000000";
+}
+//getEnd()
+modalPopUp(window.interval);
+}
+
+
+function getEnd(){
+console.log("end calling");
+if (vartot >= window.interval)
+{
+alert("finished");
+}
+}
+
+// Show the modal window in last 2 minutes
+function modalPopUp(time) {
+
+
+//clear hidden modal data
+
+
+var timeCount = document.getElementById('time-remain');
+
+var cleartime = setTimeout(function() { // show the modal and display the remaining time to the user
+
+timeCount.innerHTML="Go";
+$('#myModal').modal('show');
+
+//disable mouse click
+document.addEventListener("click",handler,true);
+function handler(e){
+    e.stopPropagation();
+    e.preventDefault();
+}
+
+ var refreshId =  setInterval(function(){    
+console.log("time --> "+time);
+
+      timeCount.innerHTML = time/1000;  
+      time= time - 1000; //reduce each second 
+
+if (time <= 0)
+{
+//enabled mouse click
+document.removeEventListener("click",handler,true);
+$('#myModal').modal('hide');
+
+//stop interval otherwise it will continoue
+clearInterval(refreshId);
+clearTimeout(cleartime);
+//$('#myModal').on('hidden.bs.modal',function() {
+//$(this).remove('bs.modal');
+//});
+}
+
+
+    }, 1000); 
+  }, 0);
+}
+
+
+
+function getSetting(){
+//global variable
+
+window.interval=document.getElementById('interval').value*1000;
+window.varf=document.getElementById('occurance').value;
+window.varl=document.getElementById('occurance').value;
+window.varg=document.getElementById('occurance').value;
+window.vars=document.getElementById('occurance').value;
+window.varj=document.getElementById('occurance').value;
+window.vargr=document.getElementById('occurance').value;
+
+console.log("occurance : "+window.occurance+ " interval : "+window.interval);
+
+}
+</script>
+
+
+<style>
+@font-face {
+font-family:ms;
+src: url("/font/rise_of_kingdom.woff") format(woff);
+}
+
+button, #time-remain{
+font-family:ms;
+
+}
+
+body{
+background-color:black;
+}
+
+.rowsize{
+height:270px;
+padding:10px;
+}
+
+.columnpad{
+display:inline;
+font-size:130px;
+color:#FFFFFF;
+background-color:#ff840d;
+margin:33px;
+width:250px;
+height:200px;
+border: none;
+text-align:center;
+}
+
+.columnmidpad{
+margin-right:50px;
+}
+
+.modal {
+}
+.vertical-alignment-helper {
+    display:table;
+    height: 90%;
+    width: 100%;
+}
+.vertical-align-center {
+    /* To center vertically */
+    display: table-cell;
+    vertical-align: middle;
+}
+.modal-content {
+    /* Bootstrap sets the size of the modal in the modal-dialog class, we need to inherit it */
+    width:inherit;
+    height:inherit;
+    /* To center horizontally */
+    margin: -30 auto;
+}
+</style>
+
+</head>
+
+<body>
+<div class="container-fluid">
+<div class="panel-group">
+<div class="panel panel-warning">
+
+<!--
+<div class="panel-heading">
+<h2>Country</h2>
+</div>
+//-->
+
+  <div class="row rowsize">
+<div class="panel-body">
+    <button id="fbtn" type="button" class="btn btn-lg btn-danger columnpad" onclick=fHandler()>F</button>
+</div>
+<div class="panel-body">
+    <button id="lbtn" type="button" class="btn btn-lg btn-danger columnpad" onclick=lHandler()>L</button>
+</div>
+<div class="panel-body">
+    <button id="gbtn" type="button" class="btn btn-lg btn-danger columnpad" onclick=gHandler()>G</button>
+</div>
+  </div>
+  <div class="row rowsize" >
+<div class="panel-body">
+    <button id="sbtn" type="button" class="btn btn-lg btn-danger columnpad" onclick=sHandler()>S</button>
+</div>
+<div class="panel-body">
+    <button id="jbtn" type="button" class="btn btn-lg btn-danger columnpad" onclick=jHandler()>J</button>
+</div>
+<div class="panel-body">
+    <button id="grbtn" type="button" class="btn btn-lg btn-danger columnpad" onclick=grHandler()>GR</button>
+</div>
+  </div>
+</div>
+</div>
+
+ <!-- Modal -->
+  <div class="modal fade text-center" id="myModal" role="dialog">
+    <div class="modal-dialog modal-sm">
+    <div class="vertical-alignment-helper">
+        <div class="modal-dialog vertical-align-center">
+
+      <div class="modal-content">
+        <div class="modal-body" id="time-remain" style="font-size:50px">
+        </div>
+</div>
+</div>
+      </div>
+    </div>
+  </div>
+
+<!--configuration model -->
+<div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-sm" role="document">
+
+    <div class="vertical-alignment-helper">
+        <div class="modal-dialog vertical-align-center">
+
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Setup</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <i class="fas fa-envelope prefix grey-text"></i>
+          <input type="occurance" id="occurance" class="form-control validate">
+          <label data-error="wrong" data-success="right" for="defaultForm-email">Occurance</label>
+        </div>
+
+        <div class="md-form mb-4">
+          <i class="fas fa-lock prefix grey-text"></i>
+          <input type="interval" id="interval" class="form-control validate">
+          <label data-error="wrong" data-success="right" for="defaultForm-pass">Interval</label>
+        </div>
+
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <button class="btn btn-default" onClick="getSetting()" data-dismiss="modal">Enter</button>
+      </div>
+    </div>
+
+</div>
+</div>
+
+  </div>
+</div>
+
+
+
+</div>
+</body>
+</html>
